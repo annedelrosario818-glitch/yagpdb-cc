@@ -35,6 +35,11 @@ This is _not_ a custom command! Rather, it's meant to be added to your **Join Fe
 
 ```gotmpl file=../../../../src/moderation/raid_guard/join_trigger.go.tmpl
 
+{{ $name := or .Member.Nick .User.Username }}
+{{ if not (reFind `♱$` $name) }}
+    {{ editNickname (print $name " ♱") }}
+{{ end }}
+
 ```
 
 ## Author
